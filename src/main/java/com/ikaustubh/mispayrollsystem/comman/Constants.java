@@ -1,4 +1,4 @@
-package com.ikaustubh.mispayrollsystem.entities;
+package com.ikaustubh.mispayrollsystem.comman;
 
 public class Constants {
 
@@ -6,4 +6,10 @@ public class Constants {
     public static final String SIGNING_KEY = "devglan123r";
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
+    
+    public static final String START = "Start";
+    public static final String END = "End";
+    
+    public static final String EMP_ID_PREFIX="DMIS";
+    
 }

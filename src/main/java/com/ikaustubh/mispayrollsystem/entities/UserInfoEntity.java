@@ -65,10 +65,6 @@ public class UserInfoEntity  {
 	@JoinColumn(name = "USER_INFO__UNIT_RID", nullable = false, referencedColumnName = "UNIT_RID")
 	private UnitEntity unitEntity;
     
-    @JsonIgnore
-    @OneToOne(fetch = FetchType.EAGER, mappedBy="useInfoEntity", cascade = CascadeType.ALL)
-    private EmployeeEntity employeeEntity;
-    
     @Column(name="USER_INFO_CREATED_BY", nullable=true, length=15)
     private String yCreatedBy;
     
@@ -136,20 +132,6 @@ public class UserInfoEntity  {
 	 */
 	public void setUnitEntity(UnitEntity unitEntity) {
 		this.unitEntity = unitEntity;
-	}
-
-	/**
-	 * @return the employeeEntity
-	 */
-	public EmployeeEntity getEmployeeEntity() {
-		return employeeEntity;
-	}
-
-	/**
-	 * @param employeeEntity the employeeEntity to set
-	 */
-	public void setEmployeeEntity(EmployeeEntity employeeEntity) {
-		this.employeeEntity = employeeEntity;
 	}
 
 	/**

@@ -1,83 +1,62 @@
 package com.ikaustubh.mispayrollsystem.entities;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+
+import org.springframework.context.annotation.Scope;
+
 
 /**
+ * This entity is represent the increment type of salary details for the employee <BR>
+ * e.g. New Emp, Royalti Bonus and Regullar Imcrement
  * 
- * @author Dnyaneshwar
- *
+ * @author Dnyaneshwar Chavan
+ * @since 06-June-2021
  */
 
 @Entity
-@Table(name = "FINANCIAL_YEAR", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "FINANCIAL_YEAR_RID", "FINANCIAL_YEAR" }, name = "UK__FINANCIAL_YEAR") })
-//@Scope("global-session")
-public class FinancialYearEntity {
+@Table(name = "INCREMENT_TYPE")
+@Scope("global-session")
+public class IncrementTypeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "FINANCIAL_YEAR_RID", length = 10, nullable = false)
-	protected long id;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "financialYearEntity", cascade = CascadeType.ALL)
-	private List<MainProgramHeadEntity> mainProgramHeadEntities = new ArrayList<MainProgramHeadEntity>();
-
-	@Column(name = "FINANCIAL_YEAR", unique = true, nullable = false, length = 10)
-	private String year;
-
-	@Column(name = "FINANCIAL_YEAR_CREATED_BY", nullable = true, length = 15)
+	@Column(name = "INCREMENT_TYPE_RID", length = 10, nullable = false)
+	private long rid;
+	
+	@Column(name = "INCREMENT_TYPE_NAME", nullable = true, length = 50)
+	private String name;
+	
+	@Column(name = "INCREMENT_TYPE_CREATED_BY", nullable = true, length = 15)
 	private String yCreatedBy;
 
-	@Column(name = "FINANCIAL_YEAR_CREATED_TIMESTAMP", nullable = true)
+	@Column(name = "INCREMENT_TYPE_CREATED_TIMESTAMP", nullable = true)
 	private LocalDateTime yCreatedDateAndTime;
 
-	@Column(name = "FINANCIAL_YEAR_MODIFIED_BY", nullable = true, length = 15)
+	@Column(name = "INCREMENT_TYPE_MODIFIED_BY", nullable = true, length = 15)
 	private String zModifiedBy;
 
-	@Column(name = "FINANCIAL_YEAR_MODIFIED_TIMESTAMP", nullable = true)
+	@Column(name = "INCREMENT_TYPE_MODIFIED_TIMESTAMP", nullable = true)
 	private LocalDateTime zModifiedDateAndTime;
 
 	/**
-	 * @return the year
+	 * @return the name
 	 */
-	public String getYear() {
-		return year;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param year the year to set
+	 * @param name the name to set
 	 */
-	public void setYear(String year) {
-		this.year = year;
-	}
-	
-	/**
-	 * @return the mainProgramHeadEntities
-	 */
-	public List<MainProgramHeadEntity> getMainProgramHeadEntities() {
-		return mainProgramHeadEntities;
-	}
-
-	/**
-	 * @param mainProgramHeadEntities the mainProgramHeadEntities to set
-	 */
-	public void setMainProgramHeadEntities(List<MainProgramHeadEntity> mainProgramHeadEntities) {
-		this.mainProgramHeadEntities = mainProgramHeadEntities;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -140,7 +119,7 @@ public class FinancialYearEntity {
 	 * @return the rid
 	 */
 	public long getRid() {
-		return id;
+		return rid;
 	}
 
 	/* (non-Javadoc)
@@ -148,8 +127,10 @@ public class FinancialYearEntity {
 	 */
 	@Override
 	public String toString() {
-		return "FinancialYearEntity [id=" + id + ", year=" + year + ", yCreatedBy=" + yCreatedBy
+		return "IncrementTypeEntity [rid=" + rid + ", name=" + name + ", yCreatedBy=" + yCreatedBy
 				+ ", yCreatedDateAndTime=" + yCreatedDateAndTime + ", zModifiedBy=" + zModifiedBy
 				+ ", zModifiedDateAndTime=" + zModifiedDateAndTime + "]";
-	}	
+	}
+
+	
 }

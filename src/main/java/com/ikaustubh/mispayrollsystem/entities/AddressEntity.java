@@ -10,8 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
+ * This entity represent is the address of the employee
  * 
- * @author Dnyaneshwar
+ * @author Dnyaneshwar Chavan
+ * @since 6-June-2021
  *
  */
 
@@ -27,7 +29,7 @@ public class AddressEntity  {
 	@Column(name = "ADDRESS_TYPE", nullable = false, length = 15)
 	private String type;
 
-	@Column(name = "ADDRESS", nullable = false, length = 500)
+	@Column(name = "ADDRESS", nullable = false, length = 300)
 	private String address;
 
 	@Column(name = "ADDRESS_TALK", nullable = false, length = 50)
@@ -41,9 +43,6 @@ public class AddressEntity  {
 
 	@Column(name = "ADDRESS_PHONE_NO", nullable = true, length = 15)
 	private int phoneNo;
-
-	@Column(name = "ADDRESS_MOBILE_NO", nullable = true, length = 15)
-	private int mobileNo;
 
 	@Column(name = "ADDRESS_CREATED_BY", nullable = true, length = 15)
 	private String yCreatedBy;
@@ -140,21 +139,7 @@ public class AddressEntity  {
 	public void setPhoneNo(int phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-
-	/**
-	 * @return the mobileNo
-	 */
-	public int getMobileNo() {
-		return mobileNo;
-	}
-
-	/**
-	 * @param mobileNo the mobileNo to set
-	 */
-	public void setMobileNo(int mobileNo) {
-		this.mobileNo = mobileNo;
-	}
-
+	
 	/**
 	 * @return the yCreatedBy
 	 */
@@ -224,12 +209,9 @@ public class AddressEntity  {
 	@Override
 	public String toString() {
 		return "AddressEntity [rid=" + rid + ", type=" + type + ", address=" + address + ", talk=" + talk + ", dist="
-				+ dist + ", pinCode=" + pinCode + ", phoneNo=" + phoneNo + ", mobileNo=" + mobileNo + ", yCreatedBy="
+				+ dist + ", pinCode=" + pinCode + ", phoneNo=" + phoneNo + ", yCreatedBy="
 				+ yCreatedBy + ", yCreatedDateAndTime=" + yCreatedDateAndTime + ", zModifiedBy=" + zModifiedBy
 				+ ", zModifiedDateAndTime=" + zModifiedDateAndTime + "]";
 	}
-	
-	
-
-	
+		
 }

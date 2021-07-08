@@ -4,15 +4,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ikaustubh.mispayrollsystem.entities.UnitTypeEntity;
+import com.ikaustubh.mispayrollsystem.entities.DesignationEntity;
 
 /**
+ * This class store the <code>Designation</code> of employee.
  * 
- * @author Dnyaneshwar
- * @since 7-Nov-2018
+ * @author Dnyaneshwar Chavan
+ * @since 28-June-2021
  */
 @Repository
 @Transactional
-public interface UnitTypeRepository extends JpaRepository<UnitTypeEntity, Long> {
+public interface DesinationRepository extends JpaRepository<DesignationEntity, Long> {
 
 }

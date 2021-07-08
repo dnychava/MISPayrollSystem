@@ -1,6 +1,5 @@
 package com.ikaustubh.mispayrollsystem.entities;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -10,55 +9,81 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Scope;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
+ * This entity is represent the Bank details of the employee <BR>
  * 
- * @author Dnyaneshwar
- *
+ * @author Dnyaneshwar Chavan
+ * @since 06-June-2021
  */
 
 @Entity
-@Table(name = "HO")
-@Scope("global-session")
-public class HOEntity implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6146091498609948558L;
+@Table(name = "BANK_DTL")
+//@Scope("global-session")
+public class BankEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "HO_RID", length = 10, nullable = false)
+	@Column(name = "BANK_DTL_RID", length = 10, nullable = false)
 	private long rid;
-
-	@Column(name = "HO_NAME", unique = true, nullable = false, length = 50)
+	
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bankEntity", cascade = CascadeType.ALL)
+	private EmployeeEntity emplEntity;
+	
+	@Column(name = "BANK_DTL_ACCOUNT_NO", unique = false, nullable = false, length = 20)
+	private long accountNo;
+	
+	@Column(name = "BANK_DTL_NAME", nullable = false, length = 50)
 	private String name;
-
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "HO_ADDRESS__ADDRESS_ID", nullable = false, referencedColumnName = "ADDRESS_RID")
-	private AddressEntity addressEntity;
-
-	/*@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "hoEntity", cascade = CascadeType.ALL)
-	private Set<UnitEntity> unitEntity = new HashSet<UnitEntity>();*/
-
-	@Column(name = "HO_CREATED_BY", nullable = true, length = 15)
+	
+	@Column(name = "BANK_DTL_IFSC_CODE", unique = false, nullable = false, length = 15)
+	private String ifscCode;
+	
+	@Column(name = "BANK_DTL_CREATED_BY", nullable = true, length = 15)
 	private String yCreatedBy;
 
-	@Column(name = "HO_CREATED_TIMESTAMP", nullable = true)
+	@Column(name = "BANK_DTL_CREATED_TIMESTAMP", nullable = true)
 	private LocalDateTime yCreatedDateAndTime;
 
-	@Column(name = "HO_MODIFIED_BY", nullable = true, length = 15)
+	@Column(name = "BANK_DTL_MODIFIED_BY", nullable = true, length = 15)
 	private String zModifiedBy;
 
-	@Column(name = "HO_MODIFIED_TIMESTAMP", nullable = true)
+	@Column(name = "BANK_DTL_MODIFIED_TIMESTAMP", nullable = true)
 	private LocalDateTime zModifiedDateAndTime;
+
+	/**
+	 * @return the emplEntity
+	 */
+	public EmployeeEntity getEmplEntity() {
+		return emplEntity;
+	}
+
+	/**
+	 * @param emplEntity the emplEntity to set
+	 */
+	public void setEmplEntity(EmployeeEntity emplEntity) {
+		this.emplEntity = emplEntity;
+	}
+
+	/**
+	 * @return the accountNo
+	 */
+	public long getAccountNo() {
+		return accountNo;
+	}
+
+	/**
+	 * @param accountNo the accountNo to set
+	 */
+	public void setAccountNo(long accountNo) {
+		this.accountNo = accountNo;
+	}
 
 	/**
 	 * @return the name
@@ -75,32 +100,18 @@ public class HOEntity implements Serializable {
 	}
 
 	/**
-	 * @return the addressEntity
+	 * @return the ifscCode
 	 */
-	public AddressEntity getAddressEntity() {
-		return addressEntity;
+	public String getIfscCode() {
+		return ifscCode;
 	}
 
 	/**
-	 * @param addressEntity the addressEntity to set
+	 * @param ifscCode the ifscCode to set
 	 */
-	public void setAddressEntity(AddressEntity addressEntity) {
-		this.addressEntity = addressEntity;
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
 	}
-
-	/**
-	 * @return the unitEntity
-	 *//*
-	public Set<UnitEntity> getUnitEntity() {
-		return unitEntity;
-	}
-
-	*//**
-	 * @param unitEntity the unitEntity to set
-	 *//*
-	public void setUnitEntity(Set<UnitEntity> unitEntity) {
-		this.unitEntity = unitEntity;
-	}*/
 
 	/**
 	 * @return the yCreatedBy
@@ -170,8 +181,8 @@ public class HOEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "HOEntity [rid=" + rid + ", name=" + name + ", yCreatedBy=" + yCreatedBy
-				+ ", yCreatedDateAndTime=" + yCreatedDateAndTime + ", zModifiedBy=" + zModifiedBy
-				+ ", zModifiedDateAndTime=" + zModifiedDateAndTime + "]";
-	}
+		return "BankEntity [rid=" + rid + ", accountNo=" + accountNo + ", name=" + name + ", ifscCode=" + ifscCode
+				+ ", yCreatedBy=" + yCreatedBy + ", yCreatedDateAndTime=" + yCreatedDateAndTime + ", zModifiedBy="
+				+ zModifiedBy + ", zModifiedDateAndTime=" + zModifiedDateAndTime + "]";
+	}	
 }

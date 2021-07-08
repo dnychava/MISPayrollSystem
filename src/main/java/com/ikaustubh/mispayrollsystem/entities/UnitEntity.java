@@ -1,8 +1,8 @@
 package com.ikaustubh.mispayrollsystem.entities;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -47,27 +46,14 @@ public class UnitEntity {
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "UNIT__MAIN_UNIT_RID", nullable = true, referencedColumnName = "UNIT_RID")
 	private UnitEntity mainUnit;
-
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "mainUnit", cascade = CascadeType.ALL)
-	private List<UnitEntity> mainUnitEntities = new ArrayList<UnitEntity>();
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unitEntity", cascade = CascadeType.ALL)
-	private List<UserInfoEntity> userInfoEntities = new ArrayList<UserInfoEntity>();
+	private Set<EmployeeEntity> emplEntities = new HashSet<EmployeeEntity>();
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unitEntity", cascade = CascadeType.ALL)
-	private List<BudgetDistributeEntity> budgetDistributeEntities = new ArrayList<BudgetDistributeEntity>();
-	
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "unitEntity", cascade = CascadeType.ALL)
-	private List<ExpenditureEntity> expenditureEntities = new ArrayList<ExpenditureEntity>();
-	
-	@JsonIgnore
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "UNIT__ADDRESS_RID", nullable = false, referencedColumnName = "ADDRESS_RID")
-	private AddressEntity addressEntity;
+	private Set<UserInfoEntity> userInfoEntities = new HashSet<UserInfoEntity>();
 	
 	@Column(name = "UNIT_NAME", unique = true, nullable = false, length = 100)
 	private String name;
@@ -110,62 +96,6 @@ public class UnitEntity {
 	 */
 	public void setMainUnit(UnitEntity mainUnit) {
 		this.mainUnit = mainUnit;
-	}
-
-	/**
-	 * @return the mainUnitEntities
-	 */
-	public List<UnitEntity> getMainUnitEntities() {
-		return mainUnitEntities;
-	}
-
-	/**
-	 * @param mainUnitEntities the mainUnitEntities to set
-	 */
-	public void setMainUnitEntities(List<UnitEntity> mainUnitEntities) {
-		this.mainUnitEntities = mainUnitEntities;
-	}
-
-	/**
-	 * @return the userInfoEntities
-	 */
-	public List<UserInfoEntity> getUserInfoEntities() {
-		return userInfoEntities;
-	}
-
-	/**
-	 * @param userInfoEntities the userInfoEntities to set
-	 */
-	public void setUserInfoEntities(List<UserInfoEntity> userInfoEntities) {
-		this.userInfoEntities = userInfoEntities;
-	}
-
-	/**
-	 * @return the budgetDistributeEntities
-	 */
-	public List<BudgetDistributeEntity> getBudgetDistributeEntities() {
-		return budgetDistributeEntities;
-	}
-
-	/**
-	 * @param budgetDistributeEntities the budgetDistributeEntities to set
-	 */
-	public void setBudgetDistributeEntities(List<BudgetDistributeEntity> budgetDistributeEntities) {
-		this.budgetDistributeEntities = budgetDistributeEntities;
-	}
-
-	/**
-	 * @return the addressEntity
-	 */
-	public AddressEntity getAddressEntity() {
-		return addressEntity;
-	}
-
-	/**
-	 * @param addressEntity the addressEntity to set
-	 */
-	public void setAddressEntity(AddressEntity addressEntity) {
-		this.addressEntity = addressEntity;
 	}
 
 	/**
@@ -245,6 +175,33 @@ public class UnitEntity {
 		return rid;
 	}
 
+	/**
+	 * @return the emplEntities
+	 */
+	public Set<EmployeeEntity> getEmplEntities() {
+		return emplEntities;
+	}
+
+	/**
+	 * @param emplEntities the emplEntities to set
+	 */
+	public void setEmplEntities(Set<EmployeeEntity> emplEntities) {
+		this.emplEntities = emplEntities;
+	}
+
+	/**
+	 * @return the userInfoEntities
+	 */
+	public Set<UserInfoEntity> getUserInfoEntities() {
+		return userInfoEntities;
+	}
+
+	/**
+	 * @param userInfoEntities the userInfoEntities to set
+	 */
+	public void setUserInfoEntities(Set<UserInfoEntity> userInfoEntities) {
+		this.userInfoEntities = userInfoEntities;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

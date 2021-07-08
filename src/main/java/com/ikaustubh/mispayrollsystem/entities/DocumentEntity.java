@@ -27,7 +27,7 @@ public class DocumentEntity {
 	@Column(name = "DOC_TBL_RID", length = 10, nullable = false)
 	private long rid;
 
-	@Column(name = "DOC_TBL_FILE_NAME", nullable = false, length = 200)
+	@Column(name = "DOC_TBL_FILE_NAME", nullable = false, length = 50)
 	private String fileName;
 
 	@Lob
@@ -35,7 +35,7 @@ public class DocumentEntity {
 	@Column(name = "DOC_TBL_CONTENT", nullable = false)
 	private byte[] content = "".getBytes();
 
-	@Column(name = "DOC_TBL_DESCRIPTION", nullable = true, length = 225)
+	@Column(name = "DOC_TBL_DESCRIPTION", nullable = true, length = 100)
 	private String description;
 
 	@Column(name = "DOC_TBL_CREATED_BY", nullable = true, length = 15)

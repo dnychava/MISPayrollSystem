@@ -8,12 +8,10 @@ import java.io.InputStream;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ikaustubh.mispayrollsystem.helper.ExpenditureHelper;
-
 public class FileUpload {
 	
 	@Autowired
-	ExpenditureHelper expenditureHelper;
+	//ExpenditureHelper expenditureHelper;
 	
 	@Test
 	public void testFileUpload() throws FileNotFoundException {

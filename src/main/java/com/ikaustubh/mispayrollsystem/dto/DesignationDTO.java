@@ -4,19 +4,19 @@
 package com.ikaustubh.mispayrollsystem.dto;
 
 /**
- * This class hold the Unit information.
+ * This class hold the Designation information.
  * 
  * @author Dnyaneshwar
  * @since 29-June-2021
  *
  */
-public class UnitDTO {
+public class DesignationDTO {
 	
 	private long id;		
 	
 	private String name;
 	
-	public UnitDTO() {
+	public DesignationDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -47,5 +47,14 @@ public class UnitDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "DesignationDTO [id=" + id + ", name=" + name + "]";
+	}
+	
 	
 }

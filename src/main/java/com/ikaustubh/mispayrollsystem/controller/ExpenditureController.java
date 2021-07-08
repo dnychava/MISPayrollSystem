@@ -1,48 +1,25 @@
 package com.ikaustubh.mispayrollsystem.controller;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.ikaustubh.mispayrollsystem.core.TransactionMode;
-import com.ikaustubh.mispayrollsystem.dto.ExpenditureDTO;
-import com.ikaustubh.mispayrollsystem.dto.ResponseDTO;
-import com.ikaustubh.mispayrollsystem.entities.ActivityEntity;
-import com.ikaustubh.mispayrollsystem.entities.MainProgramHeadEntity;
-import com.ikaustubh.mispayrollsystem.helper.ExpenditureHelper;
-import com.ikaustubh.mispayrollsystem.repository.ActivityRepo;
-import com.ikaustubh.mispayrollsystem.repository.MainProgramHeadRepository;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/expenditure", produces = MediaType.APPLICATION_JSON_VALUE)
-public class ExpenditureController {
+public class ExpenditureController {/*
 
-	@Autowired
+	//@Autowired
 	ExpenditureHelper expenditureHelper;
 
-	@Autowired
+	//@Autowired
 	ResponseDTO resposeDTO;
 
-	@Autowired
+	//@Autowired
 	ActivityRepo mnActRepo;
 	
-	@Autowired
+	//@Autowired
 	MainProgramHeadRepository programHDRepo;
 	
 
@@ -95,14 +72,13 @@ public class ExpenditureController {
 			e.printStackTrace();
 			resposeDTO.setErrors(e.getMessage());
 			return new ResponseEntity<>(resposeDTO, HttpStatus.BAD_REQUEST);
-			
 		}
 
 	}
 
 	private void createMainActivityValue() {
 		
-		Optional<MainProgramHeadEntity> mnHDPrm = programHDRepo.findById((long)1);
+		Optional<MainProgramHeadEntity> mnHDPrm = null;//programHDRepo.findById((long)1);
 		MainProgramHeadEntity mainProgramEntity= mnHDPrm.isPresent() ? mnHDPrm.get() : null;
 		
 		// Level 1 mainActivity(1)
@@ -146,9 +122,9 @@ public class ExpenditureController {
 					mainActLvl1113.setName("Blood Transfusion for JSSK Beneficiaries");
 					mainActLvl1113.setMainActivity(mainActLvl111);
 					mainActLvl1113.setMainProgramHeadEntity(mainProgramEntity);
-					mnActRepo.save(mainActLvl1111);
-					mnActRepo.save(mainActLvl1112);
-					mnActRepo.save(mainActLvl1113);
+					//mnActRepo.save(mainActLvl1111);
+					//mnActRepo.save(mainActLvl1112);
+					//mnActRepo.save(mainActLvl1113);
 					
 				// Level 3(1.1.3) mainActivity(1)
 				ActivityEntity mainActLvl113 = new ActivityEntity();
@@ -174,8 +150,8 @@ public class ExpenditureController {
 					mainActLvl11312.setOldCode("A.3.1.2");
 					mainActLvl11312.setName("Male Sterilization fixed day services");
 					mainActLvl11312.setMainActivity(mainActLvl1131);
-					mnActRepo.save(mainActLvl11311);
-					mnActRepo.save(mainActLvl11312);
+					//mnActRepo.save(mainActLvl11311);
+					//mnActRepo.save(mainActLvl11312);
 				
 				// Level 4(1.1.3.2) mainActivity(1)
 				ActivityEntity mainActLvl1132 = new ActivityEntity();
@@ -195,14 +171,14 @@ public class ExpenditureController {
 					mainActLvl11322.setOldCode("A.3.7.5");
 					mainActLvl11322.setName("Other activities (demand generation, strengthening service delivery etc.)");
 					mainActLvl11322.setMainActivity(mainActLvl1132);
-					mnActRepo.save(mainActLvl11321);
-					mnActRepo.save(mainActLvl11322);
+					//mnActRepo.save(mainActLvl11321);
+					//mnActRepo.save(mainActLvl11322);
 					
 	
 
-		/*==========================
+		==========================
 				2nd
-		==========================*/
+		==========================
 		// Level 1 mainActivity(2)
 		ActivityEntity mainActLvl2 = new ActivityEntity();
 		mainActLvl2.setNewCode("2");
@@ -233,12 +209,12 @@ public class ExpenditureController {
 					mainActLvl2112.setName("Opex");
 					mainActLvl2112.setMainActivity(mainActLvl211);
 					
-					mnActRepo.save(mainActLvl2111);
-					mnActRepo.save(mainActLvl2112);
+					//mnActRepo.save(mainActLvl2111);
+					//mnActRepo.save(mainActLvl2112);
 					
 		
 	////Fetching data.
-	Optional<ActivityEntity> findMayAct = mnActRepo.findById(new Long(568));
+	Optional<ActivityEntity> findMayAct = null; //mnActRepo.findById(new Long(568));
 	if(findMayAct.isPresent()) {
 		ActivityEntity mainLvl1 = findMayAct.get();
 		System.out.println("=======1====="+mainLvl1.getNewCode());
@@ -252,4 +228,4 @@ public class ExpenditureController {
 
 	}
 
-}
+*/}

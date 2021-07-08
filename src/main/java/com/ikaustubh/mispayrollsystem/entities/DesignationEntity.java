@@ -1,7 +1,8 @@
 package com.ikaustubh.mispayrollsystem.entities;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,87 +11,92 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 /**
+ * This entity is represent the designation of the employee <BR>
+ * Eg. 1. Pharmasist, 2. NCD, 3. Nurse. 
  * 
- * @author Dnyaneshwar
- *
+ * @author Dnyaneshwar Chavan
+ * @since 05-June-2021
  */
 
 @Entity
-@Table(name = "EXPENDITURE_DTL")
-public class ExpenditureDtlEntity {
+@Table(name = "DESIGNATION")
+//@Scope("global-session")
+public class DesignationEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "EXPENDITURE_DTL_RID", length = 10, nullable = false)
-	protected long rid;
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "EXPENDITURE_DTL__EXPENDITURE_RID", nullable = false, referencedColumnName = "EXPENDITURE_RID")
-	private ExpenditureEntity expenditureEntity;
-
-	@Column(name = "EXPENDITURE_AMT", nullable = false, precision = 19, scale = 2)
-	private BigDecimal amt = new BigDecimal("0.00");
-
-	@Column(name = "EXPENDITURE_AMT_IN_LAKH", nullable = false, precision = 19, scale = 2)
+	@Column(name = "DESIGNATION_RID", length = 10, nullable = false)
+	private long rid;
 	
-	private BigDecimal amtInLakh = new BigDecimal("0.00");
-	@Column(name = "EXPENDITURE_CREATED_BY", nullable = true, length = 15)
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "designationEntity", cascade = CascadeType.ALL)
+	private Set<EmployeeEntity> emplEntities = new HashSet<EmployeeEntity>();
+	
+	@Column(name = "DESIGNATION_NAME", nullable = false, length = 50)
+	private String name;
+	
+	@Column(name = "DESIGNATION_FMR_CODE", nullable = false, length = 50)
+	private String fmrCode;
+	
+	@Column(name = "DESIGNATION_CREATED_BY", nullable = true, length = 15)
 	private String yCreatedBy;
 
-	@Column(name = "EXPENDITURE_CREATED_TIMESTAMP", nullable = true)
+	@Column(name = "DESIGNATION_CREATED_TIMESTAMP", nullable = true)
 	private LocalDateTime yCreatedDateAndTime;
 
-	@Column(name = "EXPENDITURE_MODIFIED_BY", nullable = true, length = 15)
+	@Column(name = "DESIGNATION_MODIFIED_BY", nullable = true, length = 15)
 	private String zModifiedBy;
 
-	@Column(name = "EXPENDITURE_MODIFIED_TIMESTAMP" + "", nullable = true)
+	@Column(name = "DESIGNATION_MODIFIED_TIMESTAMP", nullable = true)
 	private LocalDateTime zModifiedDateAndTime;
 
 	/**
-	 * @return the expenditureEntity
+	 * @return the emplEntities
 	 */
-	public ExpenditureEntity getExpenditureEntity() {
-		return expenditureEntity;
+	public Set<EmployeeEntity> getEmplEntities() {
+		return emplEntities;
 	}
 
 	/**
-	 * @param expenditureEntity the expenditureEntity to set
+	 * @param emplEntities the emplEntities to set
 	 */
-	public void setExpenditureEntity(ExpenditureEntity expenditureEntity) {
-		this.expenditureEntity = expenditureEntity;
+	public void setEmplEntities(Set<EmployeeEntity> emplEntities) {
+		this.emplEntities = emplEntities;
 	}
 
 	/**
-	 * @return the amt
+	 * @return the name
 	 */
-	public BigDecimal getAmt() {
-		return amt;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param amt the amt to set
+	 * @param name the name to set
 	 */
-	public void setAmt(BigDecimal amt) {
-		this.amt = amt;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * @return the amtInLakh
+	 * @return the fmrCode
 	 */
-	public BigDecimal getAmtInLakh() {
-		return amtInLakh;
+	public String getFmrCode() {
+		return fmrCode;
 	}
 
 	/**
-	 * @param amtInLakh the amtInLakh to set
+	 * @param fmrCode the fmrCode to set
 	 */
-	public void setAmtInLakh(BigDecimal amtInLakh) {
-		this.amtInLakh = amtInLakh;
+	public void setFmrCode(String fmrCode) {
+		this.fmrCode = fmrCode;
 	}
 
 	/**
@@ -161,10 +167,9 @@ public class ExpenditureDtlEntity {
 	 */
 	@Override
 	public String toString() {
-		return "ExpenditureDtlEntity [rid=" + rid + ", amt=" + amt + ", amtInLakh=" + amtInLakh + ", yCreatedBy="
-				+ yCreatedBy + ", yCreatedDateAndTime=" + yCreatedDateAndTime + ", zModifiedBy=" + zModifiedBy
-				+ ", zModifiedDateAndTime=" + zModifiedDateAndTime + "]";
+		return "DesignationEntity [rid=" + rid + ", name=" + name + ", fmrCode=" + fmrCode
+				+ ", yCreatedBy=" + yCreatedBy + ", yCreatedDateAndTime=" + yCreatedDateAndTime + ", zModifiedBy="
+				+ zModifiedBy + ", zModifiedDateAndTime=" + zModifiedDateAndTime + "]";
 	}
 	
-
 }
